@@ -1,10 +1,10 @@
 package com.springrest.springrest.entities;
 
 public class Product {
-	private long id;
+	private int id;
 	private String Name;
 	private String Discription;
-	public Product(long id, String name, String discription) {
+	public Product(int id, String name, String discription) {
 		super();
 		this.id = id;
 		Name = name;
@@ -14,10 +14,10 @@ public class Product {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {

@@ -2,6 +2,7 @@ package com.springrest.springrest.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,49 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getProducts() {
 		// TODO Auto-generated method stub
 		return list;
+	}
+
+
+	@Override
+	public Product getProduct(long productId) {
+		// TODO Auto-generated method stub
+		Product p=null;
+		for(Product product:list) {
+			if(product.getId()==productId) {
+				p=product;
+				break;
+			}
+		}
+		return p;
+	}
+
+
+	@Override
+	public Product addProduct(Product product) {
+		// TODO Auto-generated method stub
+		list.add(product);
+		return product;
+	}
+
+
+	@Override
+	public Product updateProduct(Product product) {
+		// TODO Auto-generated method stub
+		list.forEach(e->{
+			if(e.getId()==product.getId()) {
+				e.setName(product.getName());
+				e.setDiscription(product.getDiscription());
+			}
+		});
+		return product;
+	}
+
+
+	@Override
+	public void deleteProduct(long parseLong) {
+		// TODO Auto-generated method stub
+		list=this.list.stream().filter(e->e.getId()!=parseLong).collect(Collectors.toList());
+		
 	}
 
 }

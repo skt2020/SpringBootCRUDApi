@@ -1,10 +1,15 @@
 package com.springrest.springrest.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
-	private int id;
+	@Id
+	private long id;
 	private String Name;
 	private String Discription;
-	public Product(int id, String name, String discription) {
+	public Product(long id, String name, String discription) {
 		super();
 		this.id = id;
 		Name = name;
@@ -14,10 +19,10 @@ public class Product {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {

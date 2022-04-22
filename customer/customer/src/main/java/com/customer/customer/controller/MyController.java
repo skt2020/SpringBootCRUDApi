@@ -7,6 +7,8 @@ import javax.annotation.Resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +19,14 @@ import org.springframework.web.client.RestTemplate;
 
 import com.customer.customer.entities.Product;
 import com.customer.customer.entities.Customer;
+import com.customer.customer.entities.MergedData;
 import com.customer.customer.services.CustomerService;
-
+import org.springframework.web.client.RestTemplate;
 
 @CrossOrigin
 @RestController
 public class MyController {
+	
 	@GetMapping("/")
 	public String home() {
 		return "Customer API is working";
@@ -31,44 +35,27 @@ public class MyController {
 	
 	@Autowired
 	private CustomerService customerService;
-	
-	@Autowired
 	private RestTemplate restTemplate;
 	
+
+	
 	@GetMapping("/customers")
-	public List<Customer> getProducts(){
+	public List<MergedData> getProducts(){
 		//Logic of adding records from product microservice
 		List<Customer> customer=this.customerService.getCustomers();
-
-		//http://localhost:8081/products/124
-		
+		List<MergedData> mergedData=new ArrayList<MergedData>();
 		customer.forEach(e->{
-			List<Product> product1;
-			product1= new ArrayList<>();
-			int productListSize=e.getProducts().size();
-			for(int i=0;i<productListSize;i++)
-			{
-				 long productId= e.getProducts().get(i).getId();
-				 product1.add(this.restTemplate.getForObject("http://localhost:8081/products/"+productId,Product.class));
-			}
-			e.setProducts(product1);
-			
+			mergedData.add(new MergedData(e));
 		});
-		
-		 //customer.setProducts(product1);
-		
-		
-		
-		//return this.customerService.getCustomers();
-		return customer;
-		
+		return mergedData;
 	}
 	
 	@GetMapping("/getcustomer/{customerId}")
-	public Customer getCustomer(@PathVariable("customerId") Long id) {
+	public MergedData getCustomer(@PathVariable("customerId") long customerId) {
 		//Logic of adding records from product microservice
-		Customer customer=this.customerService.getCustomer(id);
+		MergedData customer=new MergedData(this.customerService.getCustomer(customerId));
 		List<Product> product2;
+		restTemplate=new RestTemplate();
 		product2= new ArrayList<>();
 		//http://localhost:8081/products/124
 		
@@ -76,7 +63,7 @@ public class MyController {
 		for(int i=0;i<productListSize;i++)
 		{
 			 long productId= customer.getProducts().get(i).getId();
-			 product2.add(this.restTemplate.getForObject("http://localhost:8081/products/"+productId,Product.class));
+			 product2.add(this.restTemplate.getForObject("http://localhost:8080/getProducts/"+productId,Product.class));
 		}
 		
 
@@ -94,6 +81,8 @@ public class MyController {
 		return customer;
 		
 	}
+		
+	
 	
 	@PostMapping(path="/addcustomer",consumes="application/json")
 	public Customer addCustomer(@RequestBody Customer customer) {
@@ -108,9 +97,13 @@ public class MyController {
 	}
 	
 	@PostMapping("/deletecustomer/{customerId}")
-	public void deleteCustomer(@PathVariable String customerId){
-		this.customerService.deleteCustomer(Long.parseLong(customerId));
-			
+	public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable String customerId){
+		try {
+			this.customerService.deleteCustomer(Long.parseLong(customerId));
+			return new ResponseEntity<>(HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 }

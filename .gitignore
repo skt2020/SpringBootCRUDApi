@@ -1,0 +1,20 @@
+UI-Customer/node_modules/
+UI-Customer/.expo/
+UI-Customer/dist/
+UI-Customer/npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+UI-Customer/web-build/
+
+UI-Product/node_modules/
+UI-Product/.expo/
+UI-Product/dist/
+UI-Product/npm-debug.*
+UI-Product/web-build/
+
+# macOS
+.DS_Store

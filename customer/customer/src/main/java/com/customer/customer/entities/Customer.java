@@ -1,8 +1,6 @@
 package com.customer.customer.entities;
 
-import java.util.ArrayList;
 
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,14 +16,9 @@ private int id;
 private String name;
 @Column(name="email")
 private String email;
-@Column(name="productId1")
-private int productId1;
-@Column(name="productId2")
-private int productId2;
-@Column(name="productId3")
-private int productId3;
-@Column(name="productId4")
-private int productId4;
+@Column(name="productId")
+private String productId;
+
 
 public Customer(int id, String name, String email) {
 	super();
@@ -69,35 +62,16 @@ public String getEmail() {
 public void setEmail(String email) {
 	this.email = email;
 }
-
-public int getProductId1() {
-	return productId1;
+public String getProductId()
+{
+	return productId;
+}
+public void setProductId(String productId)
+{
+	this.productId=productId;
 }
 
-public void setProductId1(int productId) {
-	this.productId1 = productId;
-}
-public int getProductId2() {
-	return productId2;
-}
 
-public void setProductId2(int productId) {
-	this.productId2 = productId;
-}
-public int getProductId3() {
-	return productId3;
-}
-
-public void setProductId3(int productId) {
-	this.productId3 = productId;
-}
-public int getProductId4() {
-	return productId4;
-}
-
-public void setProductId4(int productId) {
-	this.productId4 = productId;
-}
 
 @Override
 public String toString() {

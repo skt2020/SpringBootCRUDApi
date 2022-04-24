@@ -30,22 +30,16 @@ public class MergedData
 		this.email = customer.getEmail();
 		restTemplate=new RestTemplate();
 		products=new ArrayList<Product>();
-		if(customer.getProductId1()!=0)
+		//int count = StringUtils.countOccurrencesOf(customer.getProductId(), ",");
+		String[] productIds = customer.getProductId().split(",");
+		for(int i=0;i<productIds.length;i++)
 		{
-			this.products.add(this.restTemplate.getForObject("http://localhost:8080/getProducts/"+customer.getProductId1(),Product.class));
+			if(!productIds[i].equals("0"))
+			{
+				this.products.add(this.restTemplate.getForObject("http://localhost:8080/getProducts/"+productIds[i],Product.class));
+			}
 		}
-		if(customer.getProductId2()!=0)
-		{
-			this.products.add(this.restTemplate.getForObject("http://localhost:8080/getProducts/"+customer.getProductId2(),Product.class));
-		}
-		if(customer.getProductId3()!=0)
-		{
-			this.products.add(this.restTemplate.getForObject("http://localhost:8080/getProducts/"+customer.getProductId3(),Product.class));
-		}
-		if(customer.getProductId4()!=0)
-		{
-			this.products.add(this.restTemplate.getForObject("http://localhost:8080/getProducts/"+customer.getProductId4(),Product.class));
-		}
+		
 	}
 	public MergedData(Customer customer,List<Product> product) {
 		super();

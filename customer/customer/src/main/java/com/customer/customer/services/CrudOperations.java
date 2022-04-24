@@ -51,7 +51,8 @@ public class CrudOperations
 		session.beginTransaction();
         try
         {
-        	List<Customer> customerList=session.createQuery("from Customer a where a.id='"+String.valueOf(customerId)+"'").list();
+        	@SuppressWarnings("unchecked")
+			List<Customer> customerList=session.createQuery("from Customer a where a.id='"+String.valueOf(customerId)+"'").list();
         	for(Customer customer: customerList)
         	{
         		return customer;
@@ -75,7 +76,8 @@ public class CrudOperations
 		ArrayList<Customer> customerList=new ArrayList<Customer>();
         try
         {
-        	List<Customer> queryData = session.createQuery("from Customer").list();
+        	@SuppressWarnings("unchecked")
+			List<Customer> queryData = session.createQuery("from Customer").list();
 			for (int i = 0; i < queryData.size(); i++) 
 			{
 				customerList.add(queryData.get(i));
@@ -94,6 +96,7 @@ public class CrudOperations
 	public  boolean updateCustomerDetails(Customer customer)
     {
       int customerId=customer.getId();
+     
    
       Transaction tx=null;
       try
@@ -108,16 +111,15 @@ public class CrudOperations
     		  session.close();
     		  return false;
     	  }
-    	  Query q=session.createQuery("update Customer set name=:n, email=:e, productid1=:p1, productid2=:p2, productid3=:p3, productid4=:p4  where id=:i");  
-    	  q.setParameter("n",customer.getName());
-    	  q.setParameter("e",customer.getEmail());
-    	  q.setParameter("p1",customer.getProductId1());
-    	  q.setParameter("p2",customer.getProductId2());
-    	  q.setParameter("p3",customer.getProductId3());
-    	  q.setParameter("p4",customer.getProductId4());
-    	  q.setParameter("i",customerId);  
+    	  @SuppressWarnings("rawtypes")
+		  Query query=session.createQuery("update Customer set name=:n, email=:e, productid=:p where id=:i");  
+    	  query.setParameter("n",customer.getName());
+    	  query.setParameter("e",customer.getEmail());
+    	  query.setParameter("p",customer.getProductId());
+    	
+    	  query.setParameter("i",customerId);  
     	    
-    	  int status=q.executeUpdate();  
+    	  int status=query.executeUpdate();  
     	  if(status!=1)
     	  {
     		  throw new Exception("Update in id = "+String.valueOf(customerId)+" failed, hence raised exception.");

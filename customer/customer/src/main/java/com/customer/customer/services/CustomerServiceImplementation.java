@@ -1,12 +1,7 @@
 package com.customer.customer.services;
 
 import com.customer.customer.entities.Customer;
-import com.customer.customer.entities.Product;
-
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 

@@ -17,6 +17,7 @@ export default function Post() {
    
   });
   let pid=[];
+  let pid1="";
 
   const [loading, setLoading] = useState(false);
 
@@ -43,7 +44,8 @@ export default function Post() {
       let element = parseInt(temp[index]);
         pid.push({'id':element});
     }
-    console.log(pid);
+    pid1+=user.productId.toString();
+    console.log(pid1);
     setUser({ ...user, productId: pid });
 
   }
@@ -64,7 +66,7 @@ export default function Post() {
         name: user.name,
         id: user.id,
         email: user.email,
-        products:pid,
+        products:pid1,
         //[{"id":124},{"id":100}]
       }),
     })

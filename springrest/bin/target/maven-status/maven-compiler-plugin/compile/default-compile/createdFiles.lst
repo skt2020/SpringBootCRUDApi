@@ -1,0 +1,5 @@
+com\springrest\springrest\services\ProductServiceImpl.class
+com\springrest\springrest\controller\MyController.class
+com\springrest\springrest\SpringrestApplication.class
+com\springrest\springrest\services\ProductService.class
+com\springrest\springrest\entities\Product.class

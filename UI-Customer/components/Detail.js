@@ -28,6 +28,7 @@ const Detail = ({ route, navigation }) => {
   );
  
   let pid=[];
+  let pid1="";
 
 
   const onChangeName = (value) => {
@@ -53,8 +54,12 @@ const Detail = ({ route, navigation }) => {
       let element = parseInt(temp[index]);
         pid.push({'id':element});
     }
-    console.log(pid);
-    setUser({ ...user, productId: pid });
+   // console.log(pid);
+   console.log("response data");
+    
+    pid1+=user.products.toString();
+    console.log(pid1);
+    //setUser({ ...user, productId: pid });
 
   }
 
@@ -71,7 +76,7 @@ const Detail = ({ route, navigation }) => {
         name: user.name,
         id: user.id,
         email: user.email,
-        products:pid,
+        products:pid1,
       }),
     })
       .then((response) => {

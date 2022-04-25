@@ -36,7 +36,7 @@ public class MergedData
 		{
 			if(!productIds[i].equals("0"))
 			{
-				this.products.add(this.restTemplate.getForObject("http://localhost:8080/getProducts/"+productIds[i],Product.class));
+				this.products.add(this.restTemplate.getForObject("http://localhost:8081/getProducts/"+productIds[i],Product.class));
 			}
 		}
 		

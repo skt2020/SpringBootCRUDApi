@@ -38,8 +38,8 @@ const Detail = ({ route, navigation }) => {
 
     myHeaders.append('Content-Type', 'application/json');
 
-    fetch('http://localhost:8081/products', {
-      method: 'PUT',
+    fetch('http://localhost:8081/updateProduct', {
+      method: 'POST',
       headers: myHeaders,
       body: JSON.stringify({
         name: user.name,
@@ -63,7 +63,7 @@ const Detail = ({ route, navigation }) => {
  
 
     fetch('http://localhost:8081/products/'+item.id, {
-      method: 'DELETE',
+      method: 'POST',
       headers: myHeaders,
       body: JSON.stringify({
         name: user.name,

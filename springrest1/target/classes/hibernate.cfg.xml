@@ -27,7 +27,7 @@
 
        <property name="hibernate.hbm2ddl.auto">update</property>
        
-      	 <mapping class="com.springrest.springrest.entities.Product"/>
+      	 <mapping class="springrest.src.main.java.com.springrest.springrest.entities.Product.java"/>
 		
 		
     </session-factory>

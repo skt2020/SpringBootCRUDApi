@@ -38,7 +38,7 @@ export default function Post() {
 
     myHeaders.append('Content-Type', 'application/json');
 
-    fetch('http://localhost:8081/products', {
+    fetch('http://localhost:8081/addProduct', {
       method: 'POST',
       headers: myHeaders,
       body: JSON.stringify({

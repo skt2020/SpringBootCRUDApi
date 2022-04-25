@@ -140,7 +140,7 @@ public class CrudOperations
     	  int status=q.executeUpdate();  
     	  if(status!=1)
     	  {
-    		  throw new ProjectException("Update in id = "+String.valueOf(productId)+" failed, hence raised exception.")
+    		  throw new ProjectException("Update in id = "+String.valueOf(productId)+" failed, hence raised exception.");
     	  }
     	  tx.commit();
     	  

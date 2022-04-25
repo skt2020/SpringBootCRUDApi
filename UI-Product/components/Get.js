@@ -14,7 +14,7 @@ const Get = ({ navigation }) => {
 
   const getUserData = async () => {
     try {
-      let response = await fetch('http://localhost:8081/products');
+      let response = await fetch('http://localhost:8081/getProducts');
       let json = await response.json();
       setUser(json);
     } catch (error) {

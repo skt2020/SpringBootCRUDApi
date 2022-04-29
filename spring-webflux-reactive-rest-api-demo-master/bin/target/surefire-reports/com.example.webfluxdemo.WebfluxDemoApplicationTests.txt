@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.webfluxdemo.WebfluxDemoApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 184.27 s - in com.example.webfluxdemo.WebfluxDemoApplicationTests

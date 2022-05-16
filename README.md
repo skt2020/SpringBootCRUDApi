@@ -54,28 +54,7 @@
     "id": 7777,
     "name": "aaaaa",
     "email": "aaaaaa@gmail.com",
-    "products": [
-        {
-            "id": 124,
-            "name": "",
-            "discription": ""
-        },
-        {
-            "id": 233444,
-            "name": "",
-            "discription": ""
-        },
-        {
-            "id": 888888,
-            "name": "",
-            "discription": ""
-        },
-        {
-            "id": 333444,
-            "name": "",
-            "discription": ""
-        }
-    ]
+    "products": [{"id":124},{"id":100}]
 }
 
 ```
